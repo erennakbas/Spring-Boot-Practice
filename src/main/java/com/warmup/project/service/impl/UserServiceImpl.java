@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
             user.setUpdatedBy("Eren");
             return modelMapper.map(userRepository.save(user), UserResponseDTO.class);
         }
-        return null;
+        throw new IllegalArgumentException("User is not found with id of: " + id.toString());
     }
     public UserResponseDTO patchUpdateUser(Long id, UserRequestDTO body){
         Optional<User> optUser = userRepository.findById(id);
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
             user.setUpdatedBy("Eren");
             return modelMapper.map(userRepository.save(user), UserResponseDTO.class);
         }
-        return null;
+        throw new IllegalArgumentException("User is not found with id of: " + id.toString());
     }
     public String deleteUser(Long id){
         Optional<User> user = userRepository.findById(id);
